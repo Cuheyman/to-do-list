@@ -12,6 +12,7 @@ import com.to_do_list.app.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private var _binding : ActivityMainBinding? = null
     private val binding get() = _binding!!
+    private var rView = binding.rvList
 
     private lateinit var toDoList: MutableList<ToDoList>
     private lateinit var toDoListAdapter : ToDoListAdapter
@@ -24,9 +25,10 @@ class MainActivity : AppCompatActivity() {
         loadList()
 
         toDoListAdapter = ToDoListAdapter(toDoList)
-        Log.i("test","test from main " + toDoListAdapter.itemCount.toString())
 
-        binding.rvList.adapter = toDoListAdapter
+        rView.adapter = toDoListAdapter
+        var layoutManager = LinearLayoutManager(this)
+        rView.layoutManager = layoutManager
     }
 
     private fun loadList() {
